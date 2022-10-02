@@ -14,24 +14,22 @@ export const GlobalStyled = createGlobalStyle`
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size:  1.6rem;
-    background-color: var(--var-gray600);
+    background-color: var(--gray600);
     
   }
 
   :root{
-    --var-danger: #E25858;
-    --var-blue-dark: #1E6F9F;
-    --var-blue: #4EA8DE;
-    --var-purple-dark: #5E60CE;
-    --var-purple: #8284FA;
-    --var-gray700: #0D0D0D;
-    --var-gray600: #1A1A1A;
-    --var-gray500: #262626;
-    --var-gray400: #333333;
-    --var-gray300: #808080;
-    --var-gray200: #D9D9D9;
-    --var-gray100: #F2F2F2;
-    
-    
+    --danger: #E25858;
+    --blue-dark: #1E6F9F;
+    --blue: #4EA8DE;
+    --purple-dark: #5E60CE;
+    --purple: #8284FA;
+    --gray700: #0D0D0D;
+    --gray600: #1A1A1A;
+    --gray500: #262626;
+    --gray400: #333333;
+    --gray300: #808080;
+    --gray200: #D9D9D9;
+    --gray100: #F2F2F2;
   }
 `;
