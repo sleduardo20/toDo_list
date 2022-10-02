@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ListChores } from "./components/ListChores";
 import { Form } from "./components/Form";
 import { Header } from "./components/Header";
 import { GlobalStyled } from "./styles/global";
@@ -9,6 +10,7 @@ function App() {
       <Header />
       <Main>
         <Form />
+        <ListChores />
       </Main>
       <GlobalStyled />
     </div>
