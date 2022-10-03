@@ -12,7 +12,7 @@ export function Chore({ description, removeChore, countDone }: Props) {
   const [isDone, setIsDone] = useState(false);
 
   return (
-    <Container>
+    <Container $isDone={isDone}>
       {isDone ? (
         <Check
           onClick={() => {
@@ -36,7 +36,7 @@ export function Chore({ description, removeChore, countDone }: Props) {
   );
 }
 
-const Container = styled.div`
+const Container = styled.div<{ $isDone: boolean }>`
   height: 7.2rem;
   padding: 1.6rem;
   background-color: var(--gray500);
@@ -50,6 +50,7 @@ const Container = styled.div`
 
   p {
     flex: 1;
+    text-decoration: ${({ $isDone }) => ($isDone ? "line-through" : "none")};
   }
 
   & + & {
@@ -75,15 +76,15 @@ const Check = styled.div`
 
   ::before {
     content: "";
-    width: 7.31px;
-    height: 4.69px;
+    width: 9.31px;
+    height: 5.69px;
     background-color: var(--purple);
     border-bottom: 2px solid var(--gray100);
     border-left: 2px solid var(--gray100);
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(-60deg);
+    top: 45%;
+    transform: translate(-50%, -45%) rotate(-60deg);
   }
 `;
 
