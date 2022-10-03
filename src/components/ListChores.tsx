@@ -1,22 +1,43 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { Chore } from "./Chore";
 import { Empty } from "./Empty";
 
-export function ListChores() {
+interface Props {
+  removeChore: (index: number) => void;
+  chores: string[];
+}
+
+export function ListChores({ chores, removeChore }: Props) {
+  const [totalDone, setTotalDone] = useState(0);
+  const totalChores = chores.length;
+
   return (
     <Container>
       <header>
         <strong>
           Tarefas criadas
-          <span>0</span>
+          <span>{totalChores}</span>
         </strong>
         <strong>
           Concluidas
-          <span>0 de 5</span>
+          <span>
+            {totalDone} de {totalChores}
+          </span>
         </strong>
       </header>
-      <Chore />
-      <Empty />
+      {chores.length > 0 ? (
+        chores.map((item, index) => (
+          <Chore
+            key={item}
+            description={item}
+            removeChore={() => removeChore(index)}
+            countDone={(count: number) => setTotalDone(count + totalDone)}
+          />
+        ))
+      ) : (
+        <Empty />
+      )}
     </Container>
   );
 }
@@ -25,6 +46,7 @@ const Container = styled.article`
   margin-top: 6.4rem;
 
   header {
+    margin-bottom: 2.4rem;
     width: 73.6rem;
     display: flex;
     align-items: center;

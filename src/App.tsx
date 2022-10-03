@@ -1,3 +1,4 @@
+import { FormEvent, useState } from "react";
 import styled from "styled-components";
 import { ListChores } from "./components/ListChores";
 import { Form } from "./components/Form";
@@ -5,12 +6,32 @@ import { Header } from "./components/Header";
 import { GlobalStyled } from "./styles/global";
 
 function App() {
+  const [chores, setChores] = useState<string[]>([]);
+
+  const [description, setDescription] = useState("");
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+
+    setChores([...chores, description]);
+    setDescription("");
+  };
+
+  const removeChore = (index: number) => {
+    const newChores = chores.filter((_, i) => i !== index);
+    setChores(newChores);
+  };
+
   return (
     <div className="App">
       <Header />
       <Main>
-        <Form />
-        <ListChores />
+        <Form
+          handleSubmit={handleSubmit}
+          description={description}
+          changeDescription={(value: string) => setDescription(value)}
+        />
+        <ListChores chores={chores} removeChore={removeChore} />
       </Main>
       <GlobalStyled />
     </div>

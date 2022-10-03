@@ -12,7 +12,6 @@ export function Empty() {
 }
 
 const Container = styled.div`
-  margin-top: 2.4rem;
   height: 30rem;
   width: 100%;
   border-radius: 8px;

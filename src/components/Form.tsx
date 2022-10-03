@@ -1,10 +1,22 @@
+import { FormEventHandler } from "react";
 import styled from "styled-components";
 import iconPlus from "../assets/plus.svg";
 
-export function Form() {
+interface Props {
+  changeDescription: (value: string) => void;
+  handleSubmit: FormEventHandler<HTMLFormElement>;
+  description: string;
+}
+
+export function Form({ changeDescription, handleSubmit, description }: Props) {
   return (
-    <Container action="">
-      <Input placeholder="Adicione uma nova tarefa" type="text" />
+    <Container onSubmit={handleSubmit}>
+      <Input
+        value={description}
+        onChange={(e) => changeDescription(e.target.value)}
+        placeholder="Adicione uma nova tarefa"
+        type="text"
+      />
       <Button type="submit">
         Criar <img src={iconPlus} alt="Plus" />
       </Button>

@@ -1,15 +1,35 @@
+import { useState } from "react";
 import styled from "styled-components";
 import imgRemove from "../assets/trash.svg";
 
-export function Chore() {
+interface Props {
+  description: string;
+  removeChore: () => void;
+  countDone: (count: number) => void;
+}
+
+export function Chore({ description, removeChore, countDone }: Props) {
+  const [isDone, setIsDone] = useState(false);
+
   return (
     <Container>
-      <Check />
-      <p>
-        Integer urna interdum massa libero auctor neque turpis turpis semper.
-        Duis vel sed fames integer.
-      </p>
-      <RemoveButton>
+      {isDone ? (
+        <Check
+          onClick={() => {
+            setIsDone(false);
+            countDone(-1);
+          }}
+        />
+      ) : (
+        <Circle
+          onClick={() => {
+            setIsDone(true);
+            countDone(1);
+          }}
+        />
+      )}
+      <p>{description}</p>
+      <RemoveButton onClick={removeChore}>
         <img src={imgRemove} alt="Remove" />
       </RemoveButton>
     </Container>
@@ -21,21 +41,32 @@ const Container = styled.div`
   padding: 1.6rem;
   background-color: var(--gray500);
   color: var(--gray100);
+  font-size: 1.4rem;
   border-radius: 0.8rem;
   display: flex;
   align-items: flex-start;
   column-gap: 1.2rem;
   justify-content: space-between;
+
+  p {
+    flex: 1;
+  }
+
+  & + & {
+    margin-top: 1.2rem;
+  }
 `;
 
 const Circle = styled.div`
   height: 2.4rem;
+  cursor: pointer;
   width: 2.4rem;
   border-radius: 50%;
   border: 2px solid var(--blue);
 `;
 
 const Check = styled.div`
+  cursor: pointer;
   height: 2.4rem;
   width: 2.4rem;
   background-color: var(--purple);
